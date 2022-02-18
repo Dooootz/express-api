@@ -1,4 +1,4 @@
-// import express
+// import & initialize express
 const express = require('express');
 const app = express();
 const PORT = 8080;
@@ -17,7 +17,7 @@ app.listen(
 // takes req & res as parameters
 app.get('/tshirt', (req, res) => {
     // response status code 200 OK
-    // send JSON to user
+    // send value of object key/s to user
     res.status(200).send({
         tshirt: 'test tshirt',
         size: 'large'
@@ -30,19 +30,19 @@ app.post('/tshirt/:id', (req, res) => {
 
     
     // get id using request parameters 
-    // destructure request parameters & find the id
+    // destructure request parameters & find the id & store as a constant variable 
     const { id } = req.params;
     // get logo from request body
-    // destructure request body & find the logo key & display its value
+    // destructure request body & find the logo key & store its value in a constant variable 
     const { logo } = req.body;
 
     // if we can't find the logo... then 
-    // response status 418 .send({ message: "error message" })
+    // response status 418 .send() [you can use objects in the send function]
     if (!logo) {
        res.status(418).send({ message: "we need a logo!" }) 
     }
     // if we found the logo.. then
-    // send({ key: value })
+    // send({ key: value }) [ send object value ] 
     res.send({
         tshirt: `Shirt with you ${logo} and ID of ${id}`,
     });  
